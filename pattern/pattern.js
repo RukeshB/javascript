@@ -6,11 +6,14 @@ function pattern(row)
         return 0;
     }
     //console.log("*".repeat(row));
+    var star= "" ;
     for(var i=0; i<row; i++)
     {
-        document.write("*");
+        //document.write("*");
+        star= star + "*";
     }
-    document.write("<br>");
+    //document.write("<br>");
+    console.log(star);
     return pattern(row - 1);
 }
 
