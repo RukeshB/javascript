@@ -1,5 +1,5 @@
 
-function Box(width, height, x, y, border, backgroundcolor,id)
+function Box(width, height, x, y, border, backgroundcolor,id,image)
 {
     this.height= height + "px";
     this.width = width + "px";
@@ -10,6 +10,7 @@ function Box(width, height, x, y, border, backgroundcolor,id)
     this.border = border;
     this.backroundcolor = backgroundcolor;
     this.id = id
+    this.image = image;
     var pdiv= document.createElement('div');
     this.draw = function()
     {
@@ -21,6 +22,8 @@ function Box(width, height, x, y, border, backgroundcolor,id)
         pdiv.style.top= this.y + "px";
         pdiv.style.position= this.position;
         pdiv.style.backgroundColor= this.backroundcolor;
+        pdiv.style.backgroundImage= "url("+this.image +")";
+        pdiv.style.backgroundSize="50px 50px"
         document.body.appendChild(pdiv);
         pdiv.setAttribute('id',this.id);
     }

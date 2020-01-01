@@ -14,8 +14,9 @@ function main()
         {
             // var ypos = 50;
             var id = "box"+1;
-            this.obj = new Box(50,50,xpos,275, "1px solid black", "green",id);
+            this.obj = new Box(50,50,xpos,275, "", "",id,"81037363_471262607106707_3098841298023481344_n.jpg");
             this.boxarr.push(this.obj);
+            //document.getElementById(id).innerHTML("<img src='81037363_471262607106707_3098841298023481344_n.jpg'>");
              xpos +=(750-50);
         }
         
@@ -125,7 +126,7 @@ function main()
         },100/50);
 }
 
-var objContiner = new Box(750,550,50,50,"1px solid black", "","continer");
+var objContiner = new Box(750,550,50,50,"5px solid black", "","continer", '');
 objContiner.draw();
 var w = document.getElementById('continer').offsetWidth;
 
