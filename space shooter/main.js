@@ -1,20 +1,29 @@
-var playera = new PlayerAction();
-var enemya = new EnemyAction();
+var collisionobj = new collision();
 function game() {
+	var that = this;
 	this.init = function() {
-		playera.bulletinit();
-		playera.draw();
-		enemya.bulletinit();
-		enemya.draw();
+		collisionobj.playera.bulletinit();
+		collisionobj.playera.playerobj.drawPlayer();
+		collisionobj.playera.draw();
+		collisionobj.enemya.bulletinit();
+		collisionobj.enemya.draw();
+		collisionobj.enemya.enemyobj.drawenemy();
 	};
-	setInterval(function() {
-		playera.shoot();
-		//enemya.move();
-		enemya.shoot();
+	this.gameloop = setInterval(function() {
+		collisionobj.playera.shoot();
+		//collisionobj.enemya.move();
+		collisionobj.enemya.shoot();
+		collisionobj.destoryenemy();
+		collisionobj.destoryplayer();
+		if (collisionobj.playera.playerobj.playerdestory == true) {
+			console.log('Game Over');
+			clearInterval(that.gameloop);
+		}
 	}, 100);
 }
 
 var gameobj = new game();
 gameobj.init();
-document.onkeydown = playera.move;
-document.onkeyup = playera.sd;
+document.onkeydown = collisionobj.playera.move;
+document.onkeyup = collisionobj.playera.sd;
+gameobj.gameloop;

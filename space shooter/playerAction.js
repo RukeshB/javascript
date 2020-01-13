@@ -4,6 +4,7 @@ function PlayerAction() {
 	this.bulletpos = new Array();
 	this.bulletspeed = 20;
 	this.playerpos = this.playerobj.x;
+	var screenwidth = document.getElementById('gameScreen').offsetWidth;
 	var that = this;
 
 	this.bulletinit = function() {
@@ -17,7 +18,7 @@ function PlayerAction() {
 		for (var i = 0; i < this.bulletarray.length; i++) {
 			this.bulletarray[i].drawbullet();
 		}
-		this.playerobj.drawPlayer();
+		//this.playerobj.drawPlayer();
 	};
 
 	this.sd = function(e) {
@@ -33,34 +34,36 @@ function PlayerAction() {
 		}
 	};
 	this.move = function(e) {
-		console.log(e);
-		if (e.keyCode == 97 || e.keyCode == 65 || e.keyCode == 37) {
-			// to move left
-			console.log('left');
-			console.log(that.playerobj);
-			that.playerobj.player.style.transform = 'rotate(-15deg)';
-			that.playerpos -= 10;
-			that.playerobj.x = that.playerpos;
-			that.draw();
-
-			// to detect if player is at boder or corss boder
-			if (that.playerpos <= 0) {
-				that.playerpos += 10;
-			}
-		}
-
-		if (e.keyCode == 100 || e.keyCode == 68 || e.keyCode == 39) {
-			// to move right
-			console.log('right');
-			that.playerpos += 10;
-			that.playerobj.x = that.playerpos;
-			that.playerobj.player.style.transform = 'rotate(15deg)';
-
-			that.playerobj.drawPlayer();
-
-			// to detect if player is at boder or corss boder
-			if (that.playerpos >= screen.width - that.playerobj.width - 15) {
+		//console.log(e);
+		if (that.playerobj.playerdestory == false) {
+			if (e.keyCode == 97 || e.keyCode == 65 || e.keyCode == 37) {
+				// to move left
+				console.log('left');
+				//console.log(that.playerobj);
+				that.playerobj.player.style.transform = 'rotate(-15deg)';
 				that.playerpos -= 10;
+				that.playerobj.x = that.playerpos;
+				that.playerobj.drawPlayer();
+
+				// to detect if player is at boder or corss boder
+				if (that.playerpos <= 0) {
+					that.playerpos += 10;
+				}
+			}
+
+			if (e.keyCode == 100 || e.keyCode == 68 || e.keyCode == 39) {
+				// to move right
+				console.log('right');
+				that.playerpos += 10;
+				that.playerobj.x = that.playerpos;
+				that.playerobj.player.style.transform = 'rotate(15deg)';
+
+				that.playerobj.drawPlayer();
+
+				// to detect if player is at boder or corss boder
+				if (that.playerpos >= screenwidth - that.playerobj.width - 15) {
+					that.playerpos -= 10;
+				}
 			}
 		}
 	};
@@ -82,11 +85,8 @@ function PlayerAction() {
 		}
 
 		// shoot another bullet when top position of last bullet reach at 400
-		if (that.bulletpos[that.bulletpos.length - 1] == 400) {
+		if (that.bulletpos[that.bulletpos.length - 1] == 400 && that.playerobj.playerdestory == false) {
 			that.bulletinit();
-			//console.log(that.bullet);
 		}
-		//that.bulletinit();
-		//console.log(that.bulletpos[that.bulletpos.length - 1]);
 	};
 }
