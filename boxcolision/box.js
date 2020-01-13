@@ -23,7 +23,7 @@ function Box(width, height, x, y, border, backgroundcolor,id,image)
         pdiv.style.position= this.position;
         pdiv.style.backgroundColor= this.backroundcolor;
         pdiv.style.backgroundImage= "url("+this.image +")";
-        pdiv.style.backgroundSize="50px 50px"
+        pdiv.style.backgroundSize="75px 75px"
         document.body.appendChild(pdiv);
         pdiv.setAttribute('id',this.id);
     }
