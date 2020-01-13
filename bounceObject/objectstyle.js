@@ -8,7 +8,7 @@ var body = document.querySelector('body');
     //css for main container
     container.style.margin="auto"; 
     container.style.width= "750px";
-    container.style.height= "580px"; 
+    container.style.height= "600px"; 
     container.style.border= "5px solid whitesmoke";
     container.style.position= "relative";
 
