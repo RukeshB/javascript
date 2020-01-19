@@ -1,15 +1,21 @@
 var collisionobj = new collision();
+var counter = 0;
 function game() {
 	var that = this;
 	this.init = function() {
 		collisionobj.playera.bulletinit();
 		collisionobj.playera.playerobj.drawPlayer();
 		collisionobj.playera.draw();
-		collisionobj.enemya.bulletinit();
+		collisionobj.enemya.initenemy();
+		//collisionobj.enemya.initenemy();
+		collisionobj.enemya.bulletinit(50, 50);
 		collisionobj.enemya.draw();
-		collisionobj.enemya.enemyobj.drawenemy();
 	};
 	this.gameloop = setInterval(function() {
+		if (counter == 20) {
+			collisionobj.enemya.initenemy();
+			counter = 0;
+		}
 		collisionobj.playera.shoot();
 		//collisionobj.enemya.move();
 		collisionobj.enemya.shoot();
@@ -19,6 +25,7 @@ function game() {
 			console.log('Game Over');
 			clearInterval(that.gameloop);
 		}
+		counter++;
 	}, 100);
 }
 
